@@ -1,3 +1,6 @@
+#ifndef _JOYSTICKLOGIC_
+#define _JOYSTICKLOGIC_
+
 #define UP 0
 #define DOWN 1
 #define LEFT 2
@@ -69,3 +72,5 @@ int getMovementPosition() {
   }
   return -1;
 }
+
+#endif

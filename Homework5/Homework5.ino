@@ -2,7 +2,7 @@
 #include "menu/menu.h"
 #include "button/button.h"
 #include "lcdDisplay/lcdDisplay.h"
-#define ENTER_BUTTON_PIN 13
+#include "data/data.h"
 
 void setup() {
   pinMode(ENTER_BUTTON_PIN, INPUT);
@@ -13,20 +13,33 @@ void setup() {
 
   lcd.createChar(0, arrowUp);
   lcd.createChar(1, arrowDown);
+  lcd.createChar(2, clickArrow);
 
-  
+
   Serial.begin(9600);
 }
-
+bool menuScroll = 1;
+unsigned long lastMenuScrollChange = 0;
 void loop() {
   buttonCheck();
+
   short int movementPosition = getMovementPosition();
 
-  
+  if (menuState == NAME && (millis() - lastSwitch > 100)) {
+    if (buttonState == 1 && lastButtonState != buttonState) {
+      if (millis() - lastMenuScrollChange > 100) {
+        menuScroll = !menuScroll;
+        lastMenuScrollChange = millis();
+      } 
+    }
+  }
+
   // Menu State Switching
-  verifyChangeJoystick(movementPosition);
-  menuStateSwitching(changebleValueJoystick, lastButtonState, movementPosition, buttonState);
-  writeText(getText(), verifyMoveUp(), verifyMoveDown());
-  Serial.println("ScreenMsg=" + String(getText()) + ", MenuState=" + String(menuState));
-  
+  if (menuScroll) {
+    verifyChangeJoystick(movementPosition);
+    menuStateSwitching(changebleValueJoystick, lastButtonState, movementPosition, buttonState);
+  }
+  writeText(getText(), menuScroll, verifyMoveUp(), verifyMoveDown());
+  Serial.println("Sizeof datasys=" + String(sizeof(dataHighscores)));
+
 }
