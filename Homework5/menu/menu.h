@@ -1,6 +1,9 @@
 // Implementing the menu as a DFA
-#include "init.h"
+#ifndef _MENU_
+#define _MENU_
 
+#include "init.h"
+#include "../data/data.h"
 //movement MATRIX for the menu
 unsigned long lastSwitch = 0;
 byte verifyMoveUp(){
@@ -33,7 +36,7 @@ void menuStateSwitching(byte changebleValueJoystick, byte lastButtonState, short
     if(lastButtonState != buttonState){
         if(buttonState == 1){
             result = menuMovementMatrix[menuState][2];
-            Serial.println(result);
+            // Serial.println(result);
             if(result != NO_ACTION){
                 menuState = result;
                 lastSwitch = millis();
@@ -42,7 +45,39 @@ void menuStateSwitching(byte changebleValueJoystick, byte lastButtonState, short
     }
 
 }
+short int menuChangeNameChars(short int joystickMovement, short int charIndex){
+    // RIGHT 3
+    // LEFT 2
 
+        if(joystickMovement != -1)
+        {
+            // Serial.println(joystickMovement);
+            if(joystickMovement == 1){
+                Player.name[charIndex] --;
+            }
+            else if(joystickMovement == 0){
+                Player.name[charIndex] ++ ;
+            }
+            else if(joystickMovement == 2){
+                charIndex ++;
+            }
+            else if(joystickMovement == 3){
+                charIndex --;
+            }
+            
+
+            if(charIndex == -1){
+                charIndex = 2;
+            }
+            else if(charIndex == 3){
+                charIndex = 0;
+            }
+            lastSwitch = millis();
+            Serial.println(charIndex);
+        }
+
+    return charIndex;
+}
 
 
 char* getText(){
@@ -101,3 +136,5 @@ char* getText(){
         break;
     }
 }
+
+#endif

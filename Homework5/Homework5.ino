@@ -40,6 +40,6 @@ void loop() {
     menuStateSwitching(changebleValueJoystick, lastButtonState, movementPosition, buttonState);
   }
   writeText(getText(), menuScroll, verifyMoveUp(), verifyMoveDown());
-  Serial.println("Sizeof datasys=" + String(sizeof(dataHighscores)));
+//  Serial.println("Sizeof datasys=" + String(sizeof(dataHighscores)));
 
 }

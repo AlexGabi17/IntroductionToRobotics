@@ -6,7 +6,7 @@
 #define LEFT 2
 #define RIGHT 3
 
-#define CHANGE_TIME_VALUE 100
+#define CHANGE_TIME_VALUE 25
 
 const int pinX = A0; 
 const int pinY = A1;
@@ -14,7 +14,7 @@ const int pinSW = 2;
 int xValue = 0;
 int yValue = 0;
 unsigned long lastDebounceTimeMovement = 0;
-const int debounceTimeMovement = 25;
+const int debounceTimeMovement = 10;
 const int maxHold = 700;
 const int minHold = 300;
 int lastDebounceValue = -1;

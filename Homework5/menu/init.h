@@ -1,3 +1,7 @@
+#ifndef _INIT_MENU_
+#define _INIT_MENU_
+
+
 #define NO_ACTION -1
 #define START_GAME 0
 #define SETTINGS 1
@@ -28,3 +32,5 @@ short int menuMovementMatrix[][3] = {
     {MATRIX_BRIGHTNESS, LCD_CONTRAST, NO_ACTION}, // STATE 10 -> LCD_BRIGTHNESS
     {NO_ACTION, LCD_BRIGTHNESS, NO_ACTION} // STATE 11 -> MATRIX BRIGTHNESS
 };
+
+#endif

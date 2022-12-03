@@ -7,7 +7,7 @@ struct systemData{
     short int matrixBrightness = 0;
 };
 struct dataPlayer{
-    char* name = "AAA";
+    char name[3] = "AAA";
     short int score = 0;
 };
 
