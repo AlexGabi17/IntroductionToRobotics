@@ -25,7 +25,7 @@ void loop() {
 
   short int movementPosition = getMovementPosition();
 
-  if (menuState == NAME && (millis() - lastSwitch > 100)) {
+  if (menuState == NAME && (millis() - lastSwitch > MENU_PAUSE)) {
     if (buttonState == 1 && lastButtonState != buttonState) {
       if (millis() - lastMenuScrollChange > 100) {
         menuScroll = !menuScroll;

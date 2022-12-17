@@ -4,6 +4,8 @@
 
 #include "init.h"
 #include "../data/data.h"
+#define MENU_PAUSE 100
+
 //movement MATRIX for the menu
 unsigned long lastSwitch = 0;
 byte verifyMoveUp(){
